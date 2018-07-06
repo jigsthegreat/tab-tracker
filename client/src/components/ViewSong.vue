@@ -27,7 +27,23 @@
                   }
                 }">
                 Edit
+              </v-btn>
+
+              <v-btn
+                v-if="isUserLoggedIn"
+                dark
+                class="cyan"
+                @click="bookmark">
+                Bookmark
                </v-btn>
+
+              <v-btn
+                v-if="isUserLoggedIn"
+                dark
+                class="cyan"
+                @click="unbookmark">
+                Unbookmark
+              </v-btn>
             </v-flex>
 
             <v-flex xs6>
@@ -68,6 +84,7 @@
 
 <script>
 import SongsService from '@/services/SongsService'
+import { mapState } from 'vuex'
 
 export default {
   data () {
@@ -75,8 +92,21 @@ export default {
       song: {}
     }
   },
+  computed: {
+    ...mapState([
+      'isUserLoggedIn'
+    ])
+  },
+  methods: {
+    bookmark () {
+      console.log('book')
+    },
+    unbookmark () {
+      console.log('unbook')
+    }
+  },
   async mounted () {
-    const songId = this.$store.state.route.params.songId
+    const songId = this.$route.params.songId
     this.song = (await SongsService.show(songId)).data
   }
 }
