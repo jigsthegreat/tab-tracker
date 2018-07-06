@@ -1,6 +1,6 @@
 <template>
   <panel title="Songs">
-    <v-btn slot="action" @click="navigateTo({name: 'Songs-create'})" class="cyan accent-2" light medium absolute right middle fab>
+    <v-btn slot="action" :to="{name: 'Songs-create'}" class="cyan accent-2" light medium absolute right middle fab>
       <v-icon>add</v-icon>
     </v-btn>
     <div class="song" v-for="song in songs" :key="song.id">
@@ -17,7 +17,7 @@
             {{ song.genre }}
           </div>
 
-          <v-btn class="cyan" @click="navigateTo({name: 'Song', params: {songId: song.id}})" dark>
+          <v-btn class="cyan" :to="{name: 'Song', params: {songId: song.id}}" dark>
             View
           </v-btn>
         </v-flex>
@@ -36,11 +36,6 @@ export default {
   data () {
     return {
       songs: null
-    }
-  },
-  methods: {
-    navigateTo (route) {
-      this.$router.push(route)
     }
   },
   watch: {

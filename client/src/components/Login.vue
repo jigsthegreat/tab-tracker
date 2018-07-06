@@ -1,7 +1,7 @@
 <template>
   <v-layout>
     <v-flex xs6 offset-xs3>
-      <panel title="Register">
+      <panel title="Login">
         <form name="tab-tracker-form" autocomplete="on">
           <v-text-field type="email" label="E-mail" v-model="email"></v-text-field>
           <v-text-field type="password" label="Password" v-model="password"></v-text-field>
@@ -34,6 +34,9 @@ export default {
         })
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
+        this.$router.push({
+          name: 'Songs'
+        })
       } catch (error) {
         this.error = error.response.data.error
       }

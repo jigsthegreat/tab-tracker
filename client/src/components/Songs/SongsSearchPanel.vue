@@ -33,11 +33,6 @@ export default {
       }
     }
   },
-  methods: {
-    navigateTo (route) {
-      this.$router.push(route)
-    }
-  },
   async mounted () {
     // do request
     // this.songs = (await SongsService.index()).data
